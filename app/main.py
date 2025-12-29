@@ -2,9 +2,8 @@ import streamlit as st
 import tempfile
 import os
 from pathlib import Path
-from pdf_utils import crop_page, create_planche
 
-# UI settings: title + favicon
+# UI settings: call before any other Streamlit command/imports
 ROOT_DIR = Path(__file__).resolve().parent.parent
 FAVICON = ROOT_DIR / "SR-Planche.png"
 st.set_page_config(
@@ -12,6 +11,8 @@ st.set_page_config(
     page_icon=str(FAVICON) if FAVICON.exists() else "🖨️",
     layout="centered",
 )
+
+from pdf_utils import crop_page, create_planche
 
 st.title("Créateur de Planches PDF A4")
 
