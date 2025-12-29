@@ -19,3 +19,16 @@
 - Si `pdftoppm` est introuvable, installe Poppler (`brew install poppler`).
 - Si Python 3.12 n’est pas vu, vérifie avec `/Library/Frameworks/Python.framework/Versions/3.12/bin/python3 -V`.
 - Tu peux supprimer le dossier `venv/` pour forcer une réinstallation au prochain lancement.
+
+## Déploiement Streamlit Cloud
+1. Fichiers à pousser : `streamlit_app.py`, dossier `app/` (code), `assets/` (si utilisés), `requirements.txt`, `packages.txt`, `README-SR_PLANCHES.md`. Laisse de côté `venv/` et les fichiers générés (`.app`, archives…).
+2. Sur Streamlit Cloud : **New app** → choisis le repo/branche → indique `streamlit_app.py` comme fichier principal.
+3. `requirements.txt` installe les libs Python (streamlit, PyPDF2, reportlab, pdf2image, Pillow, pikepdf).
+4. `packages.txt` installe Poppler (`poppler-utils`) pour `pdf2image` (commande `pdftoppm`).
+5. Test local rapide (hors app Platypus) :
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install -r requirements.txt
+   streamlit run streamlit_app.py
+   ```
